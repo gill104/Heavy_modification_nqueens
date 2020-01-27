@@ -16,6 +16,9 @@ Nqueens::~Nqueens()
 	delete[] _map;
 }
 void Nqueens::deleteMap() {
+	for (int x = 0; x < _row; x++) {
+		delete[] _map[x];
+	}
 	delete[] _map;
 }
 void Nqueens::setSizes(int s)
@@ -54,27 +57,9 @@ void Nqueens::display()
 
 void Nqueens::addFitness(vector<Human>& pop, string stringFitness, double fitness, bool& gotIt)
 {
-	/*cout << "addFitness" << endl;
-	int tempC = 0;
-	for (vector<Population * >::iterator it = pop.begin(); it != pop.end(); it++)
-	{
-		cout << tempC << ": addFitness strings " << (*it)->getNumTotal() << endl;
-		cout << tempC << ": addFitness fitness " << (*it)->getFitTotal() << endl;
-		tempC++;
-
-	}
-	system("pause");*/
-
-	int counter = 0;
 	string fitString = "";
 
-	for (vector<Human>::iterator it = pop.begin(); it != pop.end(); it++)//gets the total amount of items in unfitted population
-	{
-		//cout << (*it)->getnum();
-		counter++;
-		//system("pause");
-	}
-	for (int x = 0; x < counter; x++)//loops through the unfitted population and saves into new vector WITH fitness
+	for (int x = 0; x < pop.size(); x++)//loops through the unfitted population and saves into new vector WITH fitness
 	{
 		if (pop[x].getnum().size() != _row)
 		{
@@ -84,16 +69,11 @@ void Nqueens::addFitness(vector<Human>& pop, string stringFitness, double fitnes
 			cout << "human fit: " << pop[x].getfit() << endl;
 			system("pause");
 		}
-		/*cout << "passed? number" << pop[x].getnum().size() << endl;
-		cout << "Human num: " << pop[x].getnum() << endl;
-		cout << "human fit: " << pop[x].getfit() << endl;*/
 
 		fitness = 1 / (this->checkFitness(pop[x].getnum()) + .001);		//fitness FUNCTION
 
 		pop[x].setfit(fitness);
 
-		//p->setfit(fitness);
-		//p->setnum(stringFitness);
 		if (fitness == 1000)
 		{
 			this->display();
@@ -107,15 +87,6 @@ void Nqueens::addFitness(vector<Human>& pop, string stringFitness, double fitnes
 			deleteMap();
 		}
 	}
-	/*string p1String;
-	string p2String;
-	for (int x = 0; x < fitnessPop.front()->getSize(); x++)
-	{
-	p1String += fitnessPop.front()->getnum()[x];
-	}
-	cout << p1String << endl;*/
-	//system("pause");
-	//delete p;
 }
 double Nqueens::checkFitness(vector<int> passedValue)
 {
@@ -162,6 +133,7 @@ double Nqueens::checkFitness(vector<int> passedValue)
 
 	//system("pause");
 }
+
 int Nqueens::checkNE(int xPassed, int yPassed)
 {
 	for (int x = xPassed; x < _row;)//checking for NE diagnol

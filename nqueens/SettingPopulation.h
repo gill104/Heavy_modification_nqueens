@@ -11,8 +11,8 @@ class Human
 		Human();
 		~Human();
 		Human(string _number, double _fitness);
-		Human(int Nsize, vector<Human>& population);
-		Human(int Nsize, vector<Human>& population,vector<Human>& children, vector<Human>& mutatedChildren);
+		//Human(int Nsize, vector<Human>& population);
+		//Human(int Nsize, vector<Human>& population,vector<Human>& children, vector<Human>& mutatedChildren);
 		void createHuman(vector<Human> &population);
 		void eraseNum();
 		void eraseFit();

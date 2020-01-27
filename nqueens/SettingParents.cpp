@@ -172,7 +172,7 @@ void Parents::mutation(vector<Human>& child, vector<Human>& mut)
 		
 		willItMutate = rand() % 100;
 
-		if (willItMutate < 80)
+		if (willItMutate < 10)
 		{
 			//cout << "Chosen Child: " << child.front().getnum() << endl;
 			

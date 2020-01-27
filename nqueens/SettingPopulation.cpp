@@ -22,141 +22,7 @@ Human::Human(string _n, double _f)
 	_size = stoi(_n);
 	_fitness = _f;
 }
-Human::Human(int Nsize, vector<Human>& population)
-{
-	/*cout << "createPopulation" << endl;
-	int tempC = 0;
-	for (vector<Population * >::iterator it = population.begin(); it != population.end(); it++)
-	{
-		cout << tempC << ": createPopulation strings " << (*it)->getNumTotal() << endl;
-		cout << tempC << ": createPopulation fitness " << (*it)->getFitTotal() << endl;
-		tempC++;
-	}
-	system("pause");*/
-	_size = Nsize;
-	_number.clear();
-	_fitness = 0.0;
 
-	//random person being generated...by generating a string nSize and shuffles them to get randNum
-	vector<int> randpop;
-	
-	for (int i = 0; i < Nsize; i++)//fills a helper vector with numbers 0 - Nsize
-	{
-		this->_number.push_back(i);
-		//randpop.push_back(i);
-	}
-
-	//if board size is less than 10
-	//create 100 humans for population with different
-	//genes
-	if (Nsize < 11)
-	{
-		for (int i = 0; i < 100; i++)//creates the population to given size
-		{
-			//p = new Population();
-			createHuman(population);
-	
-
-		}
-		//cout << "position value 2: " << population.front()->getnum().at(2) << endl;
-		//system("pause");
-		//for (vector<Population *>::iterator it = population.begin(); it != population.end(); it++)
-		//{
-		//	cout << (*it)->getnum() << endl;
-		//	//system("pause");
-		//}
-	}
-	else
-	{
-		//if number is greater than 10
-		//we need 100 + x humans so 
-		for (int i = 0; i < Nsize * 10; i++)//creates the population to given size
-		{
-			//p = new Population();
-			//p = new Population();
-			createHuman(population);
-
-		}
-
-		//for (vector<Population *>::iterator it = population.begin(); it != population.end(); it++)
-		//{
-		//	cout << (*it)->getnum() << endl;
-		//	//system("pause");
-		//}
-	}
-
-}
-Human::Human(int Nsize, vector<Human>& population, vector<Human>& children, vector<Human>&mutatedChildren)
-{
-	population.clear();
-	/*cout << "createPopulation" << endl;
-	int tempC = 0;
-	for (vector<Population * >::iterator it = population.begin(); it != population.end(); it++)
-	{
-		cout << tempC << ": createPopulation strings " << (*it)->getNumTotal() << endl;
-		cout << tempC << ": createPopulation fitness " << (*it)->getFitTotal() << endl;
-		tempC++;
-	}
-	system("pause");*/
-	_size = Nsize;
-	_number.clear();
-	_fitness = 0.0;
-
-	//random person being generated...by generating a string nSize and shuffles them to get randNum
-	vector<int> randpop;
-	for (int i = 0; i < Nsize; i++)//fills a helper vector with numbers 0 - Nsize
-	{
-		this->_number.push_back(i);
-	}
-
-	//if board size is less than 10
-	//create 100 humans for population with different
-	//genes
-	if (Nsize < 11)
-	{
-		for (int i = 0; i < 100 - children.size() - mutatedChildren.size(); i++)//creates the population to given size
-		{
-			//p = new Population();
-			createHuman(population);
-		}
-		std::sort(population.begin(), population.end(), compareFitness());
-		//cout << "position value 2: " << population.front()->getnum().at(2) << endl;
-		//system("pause");
-		//for (vector<Population *>::iterator it = population.begin(); it != population.end(); it++)
-		//{
-		//	cout << (*it)->getnum() << endl;
-		//	//system("pause");
-		//}
-	}
-	else
-	{
-		//if number is greater than 10
-		//we need 100 + x humans so 
-		for (int i = 0; i < (Nsize * 10) - children.size() - mutatedChildren.size(); i++)//creates the population to given size
-		{
-			//p = new Population();
-			//p = new Population();
-			createHuman(population);
-
-		}
-		std::sort(population.begin(), population.end(), compareFitness());
-		//for (vector<Population *>::iterator it = population.begin(); it != population.end(); it++)
-		//{
-		//	cout << (*it)->getnum() << endl;
-		//	//system("pause");
-		//}
-	}
-	while(!children.empty())
-	{
-		population.push_back(children.front());
-		children.erase(children.begin());
-	}
-	while(!mutatedChildren.empty())
-	{
-		population.push_back(mutatedChildren.front());
-		mutatedChildren.erase(mutatedChildren.begin());
-	}
-}
 bool compareFitness::operator() (Human f, Human g)
 {
 	return f.getfit() > g.getfit();
@@ -180,6 +46,7 @@ void Human::createHuman(vector<Human> &population)
 	{
 		cout << "bad human created" << endl;
 	}
+	
 }
 void Human::eraseNum()
 {
